@@ -1,7 +1,5 @@
 //import { } from '../zk/main';
 
-import { getAccount } from "snarkyjs/dist/node/lib/mina"
-
 let account
 
 const initializeMina = async () => {
