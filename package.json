@@ -1,9 +1,13 @@
 {
-  "name": "package-name",
+  "name": "car-stack",
   "version": "0.1.0",
   "description": "",
-  "author": "",
-  "license": "Apache-2.0",
+  "author": "Rodolfo Ruiz/Carlos Mosqueda",
+  "license": "MIT",
+  "dependencies": {
+    "@aurowallet/mina-provider": "0.1.4",
+    "snarkyjs":"0.6.1"
+  },
   "keywords": [
     "mina-zkapp",
     "mina-zk-app",

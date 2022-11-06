@@ -34,7 +34,8 @@
       }
   </script>
 
-  <script src ="./js/CarStack.js" type="module"></script>
+  <script src="./js/index.js" defer></script>
+
 
 </head>
 <body>
@@ -62,18 +63,20 @@
   
           <div class="mt-6 grid grid-cols-2 gap-2">
             <div>
-              <a href="#" class="inline-flex w-full justify-center rounded-md border-2 border-carBlu bg-black py-2 px-4 text-sm font-medium shadow-sm hover:bg-sky-800">
+              <button 
+                class="inline-flex w-full justify-center rounded-md border-2 border-carBlu bg-black py-2 px-4 text-sm font-medium shadow-sm hover:bg-sky-800"
+                id="connectAuroButton">
                 <span class="sr-only">Sign in with Auro Wallet</span>
-                <img class="mx-auto h-5 w-auto" src="images\imgMainauro.png" alt="Your Company">
-              </a>
+                <img class="mx-auto h-5 w-auto" src="images\imgMainauro.png" alt="Auro Wallet Button">
+              </button>
             </div>
-  
-  
             <div>
-              <a href="#" class="inline-flex w-full justify-center rounded-md border-2 border-carBlu bg-black py-2 px-4 text-sm font-medium text-carBlu shadow-sm hover:bg-sky-800">
+              <button
+                class="inline-flex w-full justify-center rounded-md border-2 border-carBlu bg-black py-2 px-4 text-sm font-medium text-carBlu shadow-sm hover:bg-sky-800"
+                id="connectLedgerButton">
                 <span class="sr-only">Sign in with Ledger</span>
-                <img class="mx-auto h-5 w-auto" src="images\imgMainledge.png" alt="Your Company">
-              </a>
+                <img class="mx-auto h-5 w-auto" src="images\imgMainledge.png" alt="Ledger Wallet Button">
+              </button>
             </div>
           </div>
         </div>

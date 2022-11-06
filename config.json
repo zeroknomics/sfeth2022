@@ -3,7 +3,7 @@
   "networks": {
     "test01": {
       "url": "https://proxy.berkeley.minaexplorer.com/graphql",
-      "keyPath": "keys/test01.json",
+      "keyPath": "src/zk/keys/test01.json",
       "fee": "0.1",
       "smartContract": "Add"
     }
