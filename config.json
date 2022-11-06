@@ -1,11 +1,11 @@
 {
   "version": 1,
   "networks": {
-    "test01": {
+    "berkeley": {
       "url": "https://proxy.berkeley.minaexplorer.com/graphql",
-      "keyPath": "src/zk/keys/test01.json",
+      "keyPath": "keys/berkeley.json",
       "fee": "0.1",
-      "smartContract": "Add"
+      "smartContract": "CarStack"
     }
   }
 }

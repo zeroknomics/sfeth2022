@@ -4,10 +4,6 @@
   "description": "",
   "author": "Rodolfo Ruiz/Carlos Mosqueda",
   "license": "MIT",
-  "dependencies": {
-    "@aurowallet/mina-provider": "0.1.4",
-    "snarkyjs":"0.6.1"
-  },
   "keywords": [
     "mina-zkapp",
     "mina-zk-app",
@@ -24,7 +20,8 @@
     "prepare": "husky install",
     "test": "node --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js",
     "testw": "node --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --watch",
-    "lint": "npx eslint src/* --fix"
+    "lint": "npx eslint src/* --fix",
+    "dev": "webpack serve"
   },
   "lint-staged": {
     "**/*": [
@@ -45,9 +42,13 @@
     "lint-staged": "^11.0.1",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.7",
-    "typescript": "^4.7.2"
+    "typescript": "^4.7.2",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^4.0.0-rc.0"
   },
   "peerDependencies": {
-    "snarkyjs": "^0.6.0"
+    "snarkyjs": "^0.6.0",
+    "@aurowallet/mina-provider": "0.1.4"
   }
 }

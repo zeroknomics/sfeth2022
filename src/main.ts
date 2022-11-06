@@ -1,4 +1,4 @@
-import { CarStack } from './CarStack.js';
+import { CarStack } from './CarStack';
 import {
   isReady,
   shutdown,
