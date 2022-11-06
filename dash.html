@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarStack - Vehicle Ledger</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kulim+Park&family=Turret+Road:wght@300;500&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- theme colors for CarStack  -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bgBlu: '#051a28',
+              carYell: '#f8f32b',
+              carBlu: '#2cb9dd',
+              carPink: '#d449d4',
+            },
+            fontFamily: {
+              prima: ['Turret Road', 'cursive'],
+              secunda: ['Kulim Park', 'sans-serif'],
+          },
+          }
+        }
+      }
+  </script>
+
+</head>
+<body>
+    
+    <div>
+    <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+    <div class="relative z-40 md:hidden" role="dialog" aria-modal="true">
+      <!--
+        Off-canvas menu backdrop, show/hide based on off-canvas menu state.
+  
+        Entering: "transition-opacity ease-linear duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "transition-opacity ease-linear duration-300"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div id="mobShroud" class="hidden transition-opacity ease-linear duration-300 inset-0 bg-gray-600 bg-opacity-0"></div>
+  
+      <div id="mobMenu" class="fixed transition ease-in-out duration-300 transform -translate-x-full inset-0 z-40 flex">
+        <!--
+          Off-canvas menu, show/hide based on off-canvas menu state.
+  
+          Entering: "transition ease-in-out duration-300 transform"
+            From: "-translate-x-full"
+            To: "translate-x-0"
+          Leaving: "transition ease-in-out duration-300 transform"
+            From: "translate-x-0"
+            To: "-translate-x-full"
+        -->
+        <div class="relative flex w-full max-w-xs flex-1 flex-col bg-bgBlu pt-5 pb-4">
+          <!--
+            Close button, show/hide based on off-canvas menu state.
+  
+            Entering: "ease-in-out duration-300"
+              From: "opacity-0"
+              To: "opacity-100"
+            Leaving: "ease-in-out duration-300"
+              From: "opacity-100"
+              To: "opacity-0"
+          -->
+          <div class="absolute top-0 right-0 -mr-12 pt-2">
+            <button id="closButt" type="button" class="ml-1 hidden flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" onclick="closeMob()">
+              <span class="sr-only">Close sidebar</span>
+              <!-- Heroicon name: outline/x-mark -->
+              <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+  
+          <div class="flex flex-shrink-0 items-center px-4">
+            <img class="h-12 w-auto" src="images\imgMainimago.png" alt="Your Company">
+          </div>
+          <div class="mt-5 h-0 flex-1 overflow-y-auto">
+            <nav class="space-y-1 px-2">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              <a href="#" class="bg-gray-900 text-white group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                <!--
+                  Heroicon name: outline/home
+  
+                  Current: "text-gray-300", Default: "text-gray-400 group-hover:text-gray-300"
+                -->
+                <svg class="text-gray-300 mr-4 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+                Dashboard
+              </a>
+  
+              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                <!-- Heroicon name: outline/users -->
+                <span class="material-icons mr-4 text-gray-300 flex-shrink-0 h-6 w-6">
+                  drive_eta
+                </span>
+                Stats
+              </a>
+  
+            </nav>
+          </div>
+        </div>
+  
+        <div class="w-14 flex-shrink-0" aria-hidden="true">
+          <!-- Dummy element to force sidebar to shrink to fit close icon -->
+        </div>
+      </div>
+    </div>
+  
+    <!-- Static sidebar for desktop -->
+    <div class="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
+      <!-- Sidebar BG -->
+      <div class="flex min-h-0 flex-1 flex-col bg-bgBlu border-r-2 border-carYell">
+        <div class="flex h-16 flex-shrink-0 items-center bg-bgBlu px-4">
+          <img class="h-12 w-auto" src="images\imgMainimago.png" alt="Your Company">
+        </div>
+        <div class="flex flex-1 flex-col overflow-y-auto">
+          <nav class="flex-1 space-y-1 px-2 py-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a href="#" class="text-gray-300 hover:bg-sky-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+              <!--
+                Heroicon name: outline/home
+  
+                Current: "text-gray-300", Default: "text-gray-400 group-hover:text-gray-300"
+              -->
+              <svg class="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+              </svg>
+              Dashboard
+            </a>
+  
+            <a href="#" class="text-gray-300 hover:bg-sky-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+              <!-- Heroicon name: outline/users -->
+              <span class="material-icons mr-4 text-gray-300 flex-shrink-0 h-6 w-6">
+                drive_eta
+              </span>
+              Stats
+            </a>
+  
+            
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col md:pl-64 h-screen">
+      <div class="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-bgBlu border-b-2 border-carYell">
+        <button type="button" class="border-r border-carYell px-4 text-carBlu focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden" onclick="openMob()">
+          <span class="sr-only">Open sidebar</span>
+          <!-- Heroicon name: outline/bars-3-bottom-left -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+          </svg>
+        </button>
+        <div class="flex flex-1 justify-between px-4">
+          <div class="flex flex-1">
+          </div>
+          <div class="ml-4 flex items-center md:ml-6">
+            <button type="button" class="rounded-full bg-bgBlu p-1 text-carPink hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-carYell focus:ring-offset-2">
+              <span class="sr-only">View notifications</span>
+              <!-- Heroicon name: outline/bell -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+              </svg>
+            </button>
+  
+            <!-- Profile dropdown -->
+            <div id="profButt" class="relative ml-3" onclick="profDrop()">
+              <div>
+                <button type="button" class="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-carYell focus:ring-offset-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                  <span class="sr-only">Open user menu</span>
+                  <img class="h-8 w-8 rounded-full" src="images\hertzRProf.png" alt="">
+                </button>
+              </div>
+  
+              <!--
+                Dropdown menu, show/hide based on menu state.
+  
+                Entering: "transition ease-out duration-100"
+                  From: "transform opacity-0 scale-95"
+                  To: "transform opacity-100 scale-100"
+                Leaving: "transition ease-in duration-75"
+                  From: "transform opacity-100 scale-100"
+                  To: "transform opacity-0 scale-95"
+              -->
+              <div id="menuDrop" class="transform transition ease-out opacity-0 -translate-y-40 absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-black border-2 border-carYell py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                <!-- Active: "bg-gray-100", Not Active: "" -->
+                <a href="#" class="block px-4 py-2 text-sm text-carBlu font-prima" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+  
+                <a href="#" class="block px-4 py-2 text-sm text-carBlu font-prima" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+  
+                <a href="#" class="block px-4 py-2 text-sm text-carBlu font-prima" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <main class="flex-1 h-full bg-bgBlu">
+        <div class="pt-20 pb-4">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+            <h1 class="text-2xl font-semibold font-secunda text-carBlu">Dashboard</h1>
+          </div>
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+            <!-- Replace with your content -->
+            <div class="py-4">
+              <div class="h-96 rounded-lg border-4 border-dashed border-gray-200"></div>
+            </div>
+            <!-- /End replace -->
+          </div>
+        </div>
+      </main>
+    </div>
+    </div>
+  
+    <!-- js link file  -->
+    <script type="text/javascript" src="lib/main.js"></script>
+    
+</body>
+</html>
