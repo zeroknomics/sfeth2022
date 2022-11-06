@@ -1,3 +1,5 @@
-import { App } from './App.js';
+import { CarStack } from './CarStack.js';
 
-export { App };
+export { CarStack };
+
+export * as snarkyjs from 'snarkyjs';
