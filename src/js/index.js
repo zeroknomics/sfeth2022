@@ -11,7 +11,7 @@ const initializeMina = async () => {
         if (!window.mina) {
             alert("No Auro Wallet was found!")
         } else {
-            onboardAuroButton.innerText = 'Onboarding in progress'
+            onboardAuroButton.innerText = 'Onboarding...'
             let data = await window.mina.requestAccounts().catch(err => err)
             if (data.message) {
                 onboardAuroButton.innerText = data.message
