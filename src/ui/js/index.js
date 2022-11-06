@@ -27,7 +27,7 @@ const initializeMina = async () => {
         }
     }
 
-    const initAccount = async () => {
+/*    const initAccount = async () => {
         if (window.mina) {
             let data = await window.mina.requestAccounts().catch(err => err)
             let approveAccount = data
@@ -44,6 +44,7 @@ const initializeMina = async () => {
     }
 
     initAccount()
+*/
 }
 
 window.addEventListener('DOMContentLoaded', initializeMina)
